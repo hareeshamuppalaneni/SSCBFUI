@@ -1,0 +1,172 @@
+<h1 class="first">External Debit and Credit Cards Transfer</h1>
+<h3 class="first">Easily transfer oney from your external debit or credit cards to your bank account</h3>
+<h2 class="first">Which card would you like to transfer money from?</h2>
+<h2 *ngIf="showErrorMessage">{{errorMessage}}</h2>
+<p-panel [toggleable]="false" *ngIf="!showReadOnlyForm && !showErrorMessage">
+    <form [formGroup]="cbfForm" (ngSubmit)="onSubmit()">
+        <p-panel header="1.Cardholder Information" [toggleable]="true">
+            <div class="p-field p-grid">
+                <div class="p-col">
+                    <span class="ui-float-label">
+                        <input id="float-input1" type="text" size="30" formControlName="memberName" pInputText>
+                        <label for="float-input">Member Name</label>
+                    </span>
+                </div>
+            </div>
+            <div class="p-field p-grid">
+                <div class="p-col">
+                    <span class="ui-float-label">
+                        <input id="float-input2" type="text" size="30" formControlName="streetAddress" pInputText>
+                        <label for="float-input">Street Address</label>
+                    </span>
+                </div>
+            </div>
+            <div class="p-field p-grid">
+
+                <div class="p-col">
+                    <span class="ui-float-label">
+                        <input id="float-input2" type="text" size="30" formControlName="zipCode" pInputText>
+                        <label for="float-input">Zip Code</label>
+                    </span>
+                </div>
+            </div>
+        </p-panel>
+        <p-panel header="2. Card Information " [toggleable]="true">
+            <div class="p-field p-grid">
+
+                <div class="p-col">
+                    <span class="ui-float-label">
+                        <input id="float-input1" type="text" size="30" formControlName="cardNumber" pInputText>
+                        <label for="float-input">Card Number</label>
+                    </span>
+                </div>
+            </div>
+            <div class="p-field p-grid">
+
+                <div class="p-col">
+                    <span class="ui-float-label">
+                        <input id="float-input1" type="text" size="30" formControlName="expirationDate" pInputText>
+                        <label for="float-input">Expiration Date</label>
+                    </span>
+                </div>
+            </div>
+            <div class="p-field p-grid">
+
+                <div class="p-col">
+                    <span class="ui-float-label">
+                        <input id="float-input1" type="text" size="30" formControlName="securityCode" pInputText>
+                        <label for="float-input">Security Code</label>
+                    </span>
+                </div>
+            </div>
+
+        </p-panel>
+        <p-panel header="3. Amount " [toggleable]="true">
+            <div class="p-field p-grid">
+
+                <div class="p-col">
+                    <span class="ui-float-label">
+                        <input id="float-input1" type="text" size="30" formControlName="amount" pInputText>
+                        <label for="float-input">Amount</label>
+                    </span>
+                </div>
+            </div>
+        </p-panel>
+        <p-panel header="4. Navy Federal Account " [toggleable]="true">
+            <p-dropdown [options]="availableAccounts" filter="true" name= "availableAccount" formControlName="navyFederalAccNum" ></p-dropdown>
+        </p-panel>
+    </form>
+</p-panel>
+<p-panel [toggleable]="false" *ngIf="showReadOnlyForm && !showErrorMessage">
+    <h3>1. Cardholder Information</h3>
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="box">
+                Member Name
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">{{cbfForm.controls['memberName'].value}}</div>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="box">
+                Street Address
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">{{cbfForm.controls['streetAddress'].value}}</div>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="box">
+                Zip Code
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">{{cbfForm.controls['zipCode'].value}}</div>
+        </div>
+    </div>
+    <h3>2. Card Information</h3>
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="box">
+                Card Number
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">{{cbfForm.controls['cardNumber'].value}}</div>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="box">
+                Expiration Date
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">{{cbfForm.controls['expirationDate'].value}}</div>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="box">
+                Security Code
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">{{cbfForm.controls['securityCode'].value}}</div>
+        </div>
+    </div>
+    <h3>3. Amount</h3>
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="box">
+                Amount
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">{{cbfForm.controls['amount'].value}}</div>
+        </div>
+    </div>
+    <h3>4. Navy Federal Account</h3>
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="box">
+                Account
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">{{cbfForm.controls['navyFederalAccNum'].value}}</div>
+        </div>
+    </div>
+</p-panel>
+
+
+<button pButton pRipple type="button" label="Cancel" class="p-button-raised" (click)="handleCancel()" *ngIf="!showErrorMessage"></button>
+<button pButton pRipple type="button" label="Continue" class="p-button-raised" (click)="handleContinue()"
+    *ngIf="!showReadOnlyForm && !showErrorMessage"></button>
+<button pButton pRipple type="button" label="Make Transfer" class="p-button-raised" (click)="handleMakeTransfer()"
+    *ngIf="showReadOnlyForm && !showErrorMessage"></button>
